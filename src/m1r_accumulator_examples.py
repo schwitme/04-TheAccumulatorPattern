@@ -5,12 +5,12 @@ This module demonstrates the ACCUMULATOR pattern in three classic forms:
    IN GRAPHICS:   x = x + pixels
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
-         Aaron Wilkin, their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Aaron Wilkin, their colleagues, and Emmi Schwitters.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 #
-# TODO: 2.
+# DONE: 2.
 #   RUN this program, then READ its code.
 #     Then answer the following, GETTING HELP AS NEED!  (Ask questions!!!)
 #     Write your answers in any reasonable way (your choice).
@@ -26,39 +26,43 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
 #     a. If you want a loop that runs   r   times,
 #          which of the following three choices would you use?
 #
-#            for k in range(r - 1):
+#            for k in range(r - 1): <--- use this one since index starts at 0
 #            for k in range(r):
 #            for k in range(r + 1):
 #
 #     b. If you want a loop that runs from 0 to s, inclusive,
 #          what expression would you use in the _____ below?
 #
-#            for k in range(_____):
+#            for k in range(s+1):
 #
 #     c. If you want a loop that runs from r to s, inclusive, assuming s >= r,
 #          what expression would you use in the _____ below?
 #
-#            for k in range(_____):
+#            for k in range(r,s+1):
 #
 #     d. If you want a loop that runs from (r + 4) to (s - 10),
 #          including the (r + 4) but not including the (s - 10),
 #          what expression would you use in the _____ below?
 #
-#            for k in range(_____):
+#            for k in range((r+4),(s-10)):
 #
 #     e. The following code snippet attempts to return the number
 #          of integers from r to s, inclusive, whose cosines are positive.
 #          It has at least 5 distinct errors (one per line).  What are they?
 #
-#              for k in range(r - s):
-#                  count = 0
-#                  if math.cos(r) > 0:
-#                      count = 1
-#                  return count
+#              for k in range(r - s):  <--- total = 0
+#                  count = 0           <--- for k in range(r,s+1)
+#                  if math.cos(r) > 0: <---     if math.cos(k) > 0
+#                      count = 1       <---         total += math.cos(k)
+#                  return count        <---     return total
 #
 #     f. The code in the "graphics accumulation" example below includes:
 #            for _ in range(n):
 #        What does the   _   (underscore) mean?
+#           It represents the variable that contains the numerical value that is
+#           incremented each time the loop is completed. This variable can be used
+#           within the loop, since that is where it exists. Often times, "k" is used
+#           for this specific case.
 #
 #     g. The code in the "graphics accumulation" example below includes:
 #
@@ -74,13 +78,13 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
 #        (i.e., is equivalent in its functionality to the above)
 #        and one is WRONG.  Which is the WRONG one?
 #
-#              x = starting_point.x
-#              for k in range(n):
-#                  center = rg.Point(x + (k * diameter), y)
+#              x = starting_point.x                      <--- this approach is wrong
+#              for k in range(n):                             because it does not adjust
+#                  center = rg.Point(x + (k * diameter), y)   the value of x in any way
 #                  circle = rg.Circle(point, radius)
 #                  circle.attach_to(window)
 #
-#              x = starting_point.x
+#              x = starting_point.x                      <--- this attempt is correct
 #              for k in range(n):
 #                  center = rg.Point(x + (k * diameter), y)
 #                  circle = rg.Circle(point, radius)
